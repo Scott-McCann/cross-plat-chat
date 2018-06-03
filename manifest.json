@@ -1,0 +1,78 @@
+{
+  "manifest_version": 2,
+
+  "name": "CrossPlatformChat",
+  "description": "Merges chats from different platforms for a seemless cross-chat experience.",
+  "version": "0.1",
+
+  "applications": {
+    "gecko": {
+      "id": "XRIXUfI2FsjwrfUGZDNFDkXw687jnwPd5618lEoc@cross-plat-chat"
+    }
+  },
+
+  "background": {
+    "scripts": [
+      "src/scripts/config.js",
+      "src/scripts/helpers.js",
+      "src/scripts/background.js"
+    ],
+    "persistent": false
+  },
+
+  "content_scripts": [{
+    "run_at": "document_end",
+    "css": [
+      "src/styles/main.css"
+    ],
+    "js": [
+      "src/scripts/config.js",
+      "src/scripts/helpers.js",
+      "src/scripts/ChatInterface.js",
+      "src/scripts/app.js"
+    ],
+    "matches": [
+      "https://www.twitch.tv/*",
+      "https://www.mixer.com/*",
+      "https://www.youtube.com/*",
+      "https://www.facebook.com/live/*"
+    ]
+  }],
+
+  "icons": {
+    "16": "src/assets/meta/i-16.png",
+    "32": "src/assets/meta/i-32.png",
+    "48": "src/assets/meta/i-48.png",
+    "64": "src/assets/meta/i-64.png",
+    "96": "src/assets/meta/i-96.png",
+    "128": "src/assets/meta/i-128.png"
+  },
+
+  "page_action": {
+    "default_icon": {
+      "16": "src/assets/meta/i-16.png",
+      "32": "src/assets/meta/i-32.png",
+      "128": "src/assets/meta/i-128.png"
+    },
+    "default_title": "Cross Platform Chat"
+  },
+
+  "permissions": [
+    "https://www.twitch.tv/*",
+    "https://www.mixer.com/*",
+    "https://www.youtube.com/*",
+    "https://www.facebook.com/live/*",
+
+    "https://api.sirlsaw.com/*",
+    "declarativeContent",
+    "activeTab",
+    "tabs",
+    "webNavigation",
+    "storage"
+  ],
+
+  "web_accessible_resources": [
+    "src/assets/*.png",
+    "src/assets/fonts/*"
+  ]
+}
